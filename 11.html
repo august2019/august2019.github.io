@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Document</title>
+   <style>
+      .outer1{width:300px;border:1px solid red;}
+      .outer1 .wrap{
+         display: table;
+          width:auto;
+              table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-word;
+    word-break: break-word;
+      }
+      .outer1 .linktext{
+             display: table-cell;
+      }
+      .outer1 .linktext .inner{    
+          display: block;
+          display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-clamp: 1;
+          -webkit-line-clamp: 1;
+          box-orient: vertical;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+          word-wrap: break-word;
+          word-break: break-word;
+          height:17px;
+      }
+      .outer1 .etcs{
+             display: table-cell;
+             white-space: nowrap;
+      }
+      .outer1 .icon1{
+         display:inline-block;
+             width: 12px;
+    height: 12px;
+    background:red;
+      }
+      .outer1 .icon2{
+         display:inline-block;
+             width: 12px;
+    height: 12px;
+    background:blue;
+      }
+
+
+
+         .outer2{width:500px;border:1px solid red;
+      overflow: hidden;
+    white-space: nowrap;}
+      .outer2 .wrap{
+   display: inline-block;
+    max-width: 100%;
+
+
+      }
+      .outer2 .linktext{
+              display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #3d3d3d;
+    text-decoration: none;
+    text-overflow: ellipsis;  
+
+      }
+      
+      .outer2 .etcs{
+            float:right;
+                margin-left: 4px;
+
+      }
+      .outer2 .icon1{
+         display:inline-block;
+             width: 12px;
+    height: 12px;
+    background:red;
+
+      }
+      .outer2 .icon2{
+         display:inline-block;
+             width: 12px;
+    height: 12px;
+    background:blue;
+      }
+   </style>
+</head>
+<body>
+   <div>방법1(line-clamp네이버에서 현재사용 익스/파폭 말줄임표안나옴)</div>
+   <div class="outer1">
+      <div class="wrap">
+         <a href="" class="linktext">
+            <div class="inner">
+               aadafsdfasaadafsdfasaadafsdfasaadafsdfasaadafsdfas
+            </div>
+         </a>
+         <div class="etcs">
+            <span class="icon1"></span>
+            <span class="icon2"></span>
+            <span class="ipin">
+               (
+                  <em>54658456</em>
+               )
+            </span>
+         </div>
+      </div>
+   </div>
+   <div>방법2(float:right 순서적으로 안맞음)</div>
+<div class="outer2">
+      <div class="wrap">
+         <div class="etcs">
+            <span class="icon1"></span>
+            <span class="icon2"></span>
+            <span class="ipin">
+               (
+                  <em>4456</em>
+               )
+            </span>
+         </div>
+         <a href="" class="linktext">
+               aadafsdaadafsdaadafsdaadafsdaadafsdaadafsdaadafsdaadafsdaadafsd
+         </a>
+         
+      </div>
+   </div>
+
+<style>
+  .tbis{display:table;table-layout:fixed;width:100%; box-sizing: border-box}
+  .tbar{display:table-cell;border:1px solid red;
+
+  /*width:1%; white-space: nowrap;*/}
+  button{display:inline-block;border-radius:50%;width:20px;height:20px;background-color:red;}
+  .ipt{width:100%;display:table-cell;}
+  input{width:100%;box-sizing:border-box;}
+
+</style>
+<div class="tbis">
+  <div class="tbar">
+    <button>d</button>
+    <button>d</button>
+    <button>d</button>
+    <button>d</button>
+    <!-- <button>d</button><button>d</button> -->
+  </div>
+  <div class="ipt">
+  <input type="text">
+  </div>
+  <div class="tbar">
+    <button>d</button>
+    <button>d</button>
+  </div>
+</div>
+
+
+
+</body>
+</html>
