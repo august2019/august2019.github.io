@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+a{text-decoration:none;color:#000}
+*{padding:0;margin:0}
+*,*:after,*:before{box-sizing:border-box}
+
+
+/* 주문고객 정보 */
+/* 타이틀 영역 자체 최대높이 주고// 타이틀은 태그 따로 해서 위아래 패딩 */
+.order-scope .order-tit-wrap{border-bottom:2px solid #dedede;max-height:40px;
+text-align:center;position:fixed;left:0;top:0;width:100%;background:#fff}
+.order-scope .order-tit-wrap .order-tit a{display:inline-block;font-size:16px;line-height:1.5;font-weight:bold;padding:7px 0}
+.order-sec{padding:0 15px;margin-top:20px}
+.order-sec .ipt-type dt{width:100px}
+.fix-tit-type{height:40px;}
+
+/* 똑같은데 간격이나 기타 다른 사항들 various - vari1 넘버링 */
+.order-sec .chk-wrap.vari1 .chklbl + .chk{margin-left:22px;}
+.order-sec .btn-set-type.vari2{margin-top:20px;margin-bottom:50px}
+.order-sec .btn-justify-type.vari3{margin-top:10px}
+.order-sec .btn-set-type.vari4{margin-top:5px}
+.order-sec .btn-center-type.vari5{margin-top:30px}
+.order-sec .btn-justify-type.vari6{margin-top:10px}
+
+
+/* 인풋 레이아웃 */
+.ipt-type{overflow:hidden;}
+.ipt-type dt{float:left;}
+.ipt-type dt .lbl{font-size:14px;line-height:1.5;font-weight:bold}
+.ipt-type dd{overflow:hidden;}
+.ipt-type .alert{font-size:12px;line-height:1.5;color:red}
+
+/* 인풋 모양 */
+.rdo[type=radio], 
+.chk[type=checkbox],
+.sel{vertical-align:middle;
+-webkit-appearance:none;border-radius:0;outline-style:none;border:0;color:#000}
+
+.ipt-wrap{display:flex;}
+.ipt-wrap .txtarea,
+.ipt-wrap .sel,
+.ipt-wrap .ipt{border:1px solid #999;padding:5px 6px;height:30px;width:100%;
+font-size:13px;line-height:1.5;color:#000;font-family:inherit}
+.ipt-wrap .sel{padding-right:20px;background:url(./img/sel.png) no-repeat right 50%;background-size:18px auto}
+.ipt-wrap + .ipt-wrap{margin-top:6px}
+
+.ipt::-webkit-input-placeholder{color:#adb5bd;}
+.ipt:-ms-input-placeholder{color:#adb5bd;}
+.ipt::-ms-input-placeholder{color:#adb5bd}
+.ipt::placeholder{color: #adb5bd}
+.ipt:disabled,.ipt[readonly] {background-color:#e9ecef}
+.ipt-type + .ipt-type{margin-top:10px}
+.ipt + .btn{margin-left:6px}
+.ipt:disabled{background:#dedede;}
+
+.chk-wrap{font-size:0;line-height:0;}
+.chk-wrap .rdo{border-radius:50%;border:1px solid #999;background:#fff;width:14px;height:14px;position:relative;
+transition:all 0.3s}
+.chk-wrap .rdo:after{
+content:"";display:inline-block;
+border-radius:50%;width:10px;height:10px;background-color:#ff3131;
+position:absolute;top:1px;left:1px;transform:scale(0);
+transform-origin:center center;
+opacity:0;
+transition:opacity 0.1s ease-out, transform 0.2s ease-out}
+.chk-wrap .rdo:checked:after{
+opacity:1;transform:scale(1)}
+.chk-wrap .rdo:disabled{background:#dedede;}
+.chk-wrap .chk:disabled{background:#dedede;}
+.chk-wrap .rdo:disabled + .chklbl{color:#666;}
+.chk-wrap .chk:disabled + .chklbl{color:#666;}
+.chk-wrap .chklbl{font-size:13px;line-height:1.5;color:#000;font-weight:bold;vertical-align:middle;}
+.chk-wrap .chk + .chklbl,
+.chk-wrap .rdo + .chklbl{margin-left:5px}
+.chk-wrap .chklbl + .chk,
+.chk-wrap .chklbl + .rdo{margin-left:10px}
+
+.chk-wrap .chk{border-radius:3px;border:1px solid #999;background:#fff;width:14px;height:14px;position:relative;
+transition:all 0.3s}
+.chk-wrap .chk:checked{border:1px solid #ff3131;background-color:#ff3131;
+background-image:url(./img/checkbox.png);background-size:10px auto;background-position:50% 50%;background-repeat:no-repeat}
+
+
+/* 버튼 */
+.btn-center-type{font-size:0;line-height:0;text-align:center}
+.btn-justify-type{font-size:0;line-height:0;position:relative}
+.btn-justify-type .rt{font-size:0;line-height:0;position:absolute;right:0;top:0}
+.btn-full-type .btn{width:100%}
+.btn-set-type{display:flex;align-items:center;justify-content:center;}
+.btn-set-type .btn{flex:1}
+.btn-set{background:#fff;border:1px solid #666;color:#666}
+.btn-set-type  .btn-odset{width:80%;flex:initial;background:#fff;border:1px solid #666;color:#666}
+
+.btn{display:inline-block;font-size:13px;line-height:1.5;padding:5px 6px;height:30px;white-space:nowrap;font-weight:bold}
+.btn-gray{background:#dedede;border:1px solid #666;color:#666}
+.btn-linegray{background:#fff;border:1px solid #666;color:#666}
+.btn-blue{background:#727cf5;border:1px solid #727cf5;color:#fff}
+.btn-lineblue{background:#fff;border:1px solid #727cf5;color:#727cf5}
+.btn-red{background:#ff3131;border:1px solid #ff3131;color:#fff}
+.btn + .btn{margin-left:6px}
+
+.btn-widfix{min-width:75px}
+.btn-full{width:100%}
+
+
+
+
+
+</style>
+</head>
+<body>
+    <div class="order-scope">
+        <div class="fix-tit-type">
+            <div class="order-tit-wrap">
+                <h3 class="order-tit">
+                    <a href="">주문결제</a>
+                </h3>
+            </div>
+        </div>
+        <div class="order-sec">
+            <dl class="ipt-type">
+                <dt><label for="" class="lbl">주문자</label></dt>
+                <dd>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt" placeholder="이름을 입력하세요.">
+                    </div><!-- //.ipt-wrap -->
+                    <p class="alert">정확한 이름을 입력해 주세요. 특수문자 사용을 제외합니다.</p>
+                </dd>
+            </dl>
+            <dl class="ipt-type">
+                <dt><label for="" class="lbl">휴대전화</label></dt>
+                <dd>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt">
+                        <span class="dash">-</span>
+                        <input type="text" class="ipt">
+                        <span class="dash">-</span>
+                        <input type="text" class="ipt">
+                    </div><!-- //.ipt-wrap -->
+                    <div class="call-company">
+                        <div class="chk-wrap">
+                            <input type="radio" class="rdo" id="Call1" name="Call" checked="checked"><label for="Call1" class="chklbl">에스케이텔레콤</label>
+                            <input type="radio" class="rdo" id="Call2" name="Call"><label for="Call2" class="chklbl">KTF</label>
+                            <input type="radio" class="rdo" id="Call3" name="Call"><label for="Call3" class="chklbl">엘지텔레콤</label>
+                            <input type="radio" class="rdo" id="Call4" name="Call" disabled="disabled"><label for="Call4" class="chklbl">기타 통신사</label>
+                        </div>
+                    </div><!-- call-company -->
+                </dd>
+            </dl>
+            <dl class="ipt-type">
+                <dt><label for="" class="lbl">이메일</label></dt>
+                <dd>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt">
+                        <span class="dash">@</span>
+                        <select class="sel">
+                            <option>naver.com</option>
+                            <option>daum.com</option>
+                        </select>
+                    </div><!-- //.ipt-wrap -->
+                </dd>
+            </dl>
+            <dl class="ipt-type">
+                <dt><label for="" class="lbl">주소</label></dt>
+                <dd>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt">
+                        <button class="btn btn-gray">우편번호</button>
+                    </div><!-- //.ipt-wrap -->
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt" disabled="disabled">
+                    </div><!-- //.ipt-wrap -->
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt" disabled="disabled">
+                    </div><!-- //.ipt-wrap -->
+                </dd>
+            </dl>
+            <dl class="ipt-type">
+                <dt><label for="" class="lbl">요청사항</label></dt>
+                <dd>
+                    <div class="ipt-wrap">
+                       <textarea class="ipt" placeholder="요청사항을 적어주세요." style="height:100px"></textarea>
+                    </div><!-- //.ipt-wrap -->
+                    <div class="chk-wrap vari1">
+                       <input type="checkbox" checked="checked" class="chk" id="CHK1">
+                       <label for="CHK1" class="chklbl" >공개</label>
+                       <input type="checkbox" class="chk"  id="CHK2">
+                       <label for="CHK2" class="chklbl">비공개</label>
+                       <input type="checkbox" class="chk" disabled="disabled" id="CHK3">
+                       <label for="CHK3" class="chklbl">선택 금지</label>
+                    </div><!-- //.chk-wrap -->
+                </dd>
+            </dl>
+            <!-- 버튼 원버튼 형 -->
+            <div class="btn-center-type vari5">
+                <button class="btn btn-linegray btn-widfix">취소</button>
+                <button class="btn btn-blue btn-widfix">확인</button>
+            </div><!-- btn-center-type -->
+            <div class="btn-justify-type vari3">
+                <button class="btn btn-blue btn-widfix">확인</button>
+                <button class="btn btn-lineblue">약관 다시보기</button>
+                <div class="rt">
+                    <button class="btn btn-gray btn-widfix">확인</button>
+                </div>
+            </div>
+            <div class="btn-justify-type vari6">
+                <button class="btn btn-red btn-full">확인</button>
+            </div>
+            <div class="btn-set-type vari4">
+                <button class="btn btn-set">주문 취소</button>
+                <button class="btn btn-set">주소 변경</button>
+            </div>
+            <div class="btn-set-type vari2">
+                <button class="btn btn-odset">이전 페이지</button>
+            </div>
+        </div>
+
+    </div><!-- //.order-scope -->
+</body>
+</html>
