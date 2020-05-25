@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
+    
+    
+<style>
+a{text-decoration:none;color:#000}
+*{padding:0;margin:0}
+*,*:after,*:before{box-sizing:border-box}
+ul, li{list-style:none}
+
+body{background:#dedede;height:100%;width:100%}
+.wrap{height:100%;background:#fff;width:768px;margin:0 auto;padding:0 15px}
+@media (max-width:768px) {
+.wrap{width:100%}
+}
+
+.swper-basic .thum-lnk{display:block;position:relative;padding-top:65%;background-color:#dedede}
+.swper-basic .thum-lnk:after{
+display:block;content:"";
+position:absolute;left:0;top:0;bottom:0;right:0;width:100%;height:100%;border:1px solid #777;
+}
+.swper-basic .thum-lnk img{display:block;position:absolute;left:0;top:0;width:100%;height:100%}
+.swper-basic .swiper-container{overflow:hidden;margin:-5px;padding-bottom:20px}
+.swper-basic .swiper-slide li{width:33.333%;float:left}
+.swper-basic .swiper-slide li{padding:5px;}
+.swper-basic .swiper-pagination-bullet{opacity:1;display:inline-block;width:15px;height:15px;background:#777}
+.swper-basic .swiper-pagination-bullet-active {background:var(--swiper-pagination-color,var(--swiper-theme-color))}
+:root {--swiper-theme-color:red}
+.swper-basic  .swiper-container-horizontal>.swiper-pagination-bullets{bottom:0}
+.swper-basic .swiper-next,
+.swper-basic .swiper-prev{position:relative;display:inline-block;width:50px;height:50px;border-radius:100px;background-color:#fff;
+position:absolute;top:50%;margin-top:-35px;cursor:pointer;z-index:1
+}
+/* 원래 -25px인데 페이징 때문에 아래 여백준거 때문에 위로 올림 */
+.swper-basic .swiper-next:after,
+.swper-basic .swiper-prev:after{display:block;content:"";width:9px;height:15px;
+position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-size:9px 15px}
+.swper-basic .swiper-next:after{background-image:url("./img/next.png")}
+.swper-basic .swiper-prev:after{background-image:url("./img/prev.png")}
+.swper-basic .swiper-next{right:15px}
+.swper-basic .swiper-prev{left:15px}
+
+.swper-paging .swiper-container{overflow:hidden;margin:0 -3px;padding-bottom:50px}
+.swper-paging .swiper-slide li{float:left;width:25%;padding:0 3px}
+.swper-paging .swiper-slide li a{display:block;border:1px solid #666;}
+.swper-paging .swiper-slide li a img{display:block;width:100%}
+.swper-paging .swiper-number{position:absolute;bottom:10px;left:0;text-align:center;z-index:10;width:100%;font-size:15px;line-height:1.5}
+.swper-paging .swiper-number .swiper-pagination-current{font-weight:bold;}
+.swper-paging .number-next,
+.swper-paging .number-prev{display:inline-block;border-radius:50%;width:30px;height:30px;border:1px solid #666;
+background:#fff;position:relative;cursor:pointer;z-index:1}
+.swper-paging .number-next{margin-left:50px}
+.swper-paging .number-next:after{background-image:url("./img/next.png")}
+.swper-paging .number-prev:after{background-image:url("./img/prev.png")}
+.swper-paging .number-next:after,
+.swper-paging .number-prev:after{display:block;content:"";width:9px;height:15px;
+position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-size:9px 15px}
+.swper-paging .number-wrap{position:absolute;width:100%;text-align:center;z-index:20;bottom:0}
+.swper-paging.vari1{margin-top:30px}
+
+.swiper-menu{width:100%;background:#8b012a;padding:10px;}
+.swiper-menu li.swiper-slide{width:auto}
+.swiper-menu li a{color:#fff;font-weight:bold;font-size:14px;line-height:1.5}
+.swiper-menu li .ani1 i{font-style:normal;position:relative;animation:gnbAni1 1s infinite;}
+@keyframes gnbAni1 {
+	0%,40% {top:0;}
+	20% {top:-0.2rem;}
+}
+.swiper-menu li .ani1 i:nth-child(1) {animation-delay:0.1s;}
+.swiper-menu li .ani1 i:nth-child(2) {animation-delay:0.2s;}
+.swiper-menu li .ani1 i:nth-child(3) {animation-delay:0.3s;}
+.swiper-menu li .ani1 i:nth-child(4) {animation-delay:0.4s;}
+.swiper-menu li.on .ani1 i {animation:none;}
+.swiper-menu li.on a{color:#ffa900}
+.swiper-menu li + li{margin-left:15px}
+.swiper-menu.vari2{margin-top:20px}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="swper-basic">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="swiper-slide">
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="swiper-slide">
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="swiper-next"></div>
+            <div class="swiper-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div><!-- //.swper-basic -->
+    
+    <div class="swper-paging vari1">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <ul class="swiper-slide">
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="swiper-slide">
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="swiper-slide">
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="thum-lnk">
+                            <img src="./img/losingme.jpg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="number-wrap">
+                <div class="number-prev"></div>
+                <div class="number-next"></div>
+            </div>
+            <div class="swiper-number"></div>
+        </div>
+    </div><!-- //.swper-paging -->
+</div>
+<div class="swiper-menu vari2">
+    <div class="swiper-container">
+        <ul class="swiper-wrapper">
+            <li class="swiper-slide"><a href="">명탐정 코난</a></li>
+            <li class="swiper-slide"><a href="">달려라 하니</a></li>
+            <li class="swiper-slide"><a href="">원피스</a></li>
+            <li class="swiper-slide"><a href="">마음의 소리</a></li>
+            <li class="swiper-slide"><a href="">명탐정 코난</a></li>
+            <li class="swiper-slide"><a href="">도라에몽</a></li>
+            <li class="swiper-slide on"><a href="">달려라 하니</a></li>
+            <li class="swiper-slide"><a href="" class="ani1">
+                <i>도</i><i>라</i><i>에</i><i>몽</i>
+            </a></li>
+            <li class="swiper-slide"><a href="">원피스</a></li>
+            <li class="swiper-slide"><a href="">마음의 소리</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<script>
+var swiper = new Swiper('.swper-basic .swiper-container', {
+    navigation : {
+        nextEl : '.swiper-next',
+        prevEl : '.swiper-prev',
+    },      
+    pagination: {
+        el : '.swiper-pagination',
+        clickable : true,
+    },
+    loop: true,
+});
+
+var swiperPaging = new Swiper('.swper-paging .swiper-container', { 
+    navigation : {
+        nextEl : '.number-next',//클래스 새로 생성
+        prevEl : '.number-prev',//클래스 새로 생성
+    },   
+    pagination: {
+        el: '.swiper-number',//클래스 새로 생성
+        type: 'fraction',
+    },
+});
+
+
+$(function(){
+    var swiperMenu = new Swiper('.swiper-menu .swiper-container', {
+        slidesPerView: 'auto',
+        preventClicks: true,
+        preventClicksPropagation: false,
+        observer: true,
+        observeParents: true,
+        initialSlide:7,
+    });
+    var $lankTitle = $('.swiper-menu .swiper-wrapper .swiper-slide a');
+    $lankTitle.click(function(e){
+        e.preventDefault();
+        var target = $(this).parent();
+        $lankTitle.parent().removeClass('on')
+        target.addClass('on');
+        muCenter(target);
+    })
+
+    function muCenter(target){
+        var snbwrap = $('.swiper-menu .swiper-wrapper');
+        var targetPos = target.position();
+        var winHarf = $('body').width()/2;
+        var pos;
+        var wrapWidth=0;
+        snbwrap.find('.swiper-slide').each(function(){
+            wrapWidth += $(this).outerWidth();
+        })
+        if ((targetPos.left + target.outerWidth()/2) <= winHarf) { // left
+            pos = 0;
+        }else if ((wrapWidth - targetPos.left - target.outerWidth()/2) <= winHarf) { //right
+            pos = wrapWidth-$('body').width();
+        }else {
+            pos = targetPos.left - winHarf + (target.outerWidth()/2);
+        }
+        
+        setTimeout(function(){snbwrap.css({
+            "transform": "translate3d("+ (pos*-1) +"px, 0, 0)",
+            "transition-duration": "500ms"
+        })}, 200);
+    }
+})
+
+
+// $(function(){
+//     var swiperMenu = new Swiper('.swiper-menu .swiper-container', {
+//         slidesPerView: 'auto',
+//         preventClicks: true,
+//         preventClicksPropagation: false,
+//         observer: true,
+//         observeParents: true,
+//         initialSlide:7,
+//     });
+//     var $lankTitle = $('.swiper-menu .swiper-wrapper .swiper-slide a');
+//     $lankTitle.click(function(e){
+//         e.preventDefault();
+//         var target = $(this).parent();
+//         $lankTitle.parent().removeClass('on')
+//         target.addClass('on');
+//         muCenter(target);
+//     })
+
+//     function muCenter(target){
+//         var snbwrap = $('.swiper-menu .swiper-wrapper');
+//         var targetPos = target.position();
+//         var winHarf = $('body').width()/2;
+//         var pos;
+//         var wrapWidth=0;
+//         snbwrap.find('.swiper-slide').each(function(){
+//             wrapWidth += $(this).outerWidth();
+//         })
+//         if ((targetPos.left + target.outerWidth()/2) <= winHarf) { // left
+//             pos = 0;
+//         }else if ((wrapWidth - targetPos.left - target.outerWidth()/2) <= winHarf) { //right
+//             pos = wrapWidth-$('body').width();
+//         }else {
+//             pos = targetPos.left - winHarf + (target.outerWidth()/2);
+//         }
+        
+//         setTimeout(function(){snbwrap.css({
+//             "transform": "translate3d("+ (pos*-1) +"px, 0, 0)",
+//             "transition-duration": "500ms"
+//         })}, 200);
+//     }
+// })
+
+  </script>
+
+</body>
+</html>
