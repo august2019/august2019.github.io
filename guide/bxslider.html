@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+<style>
+a{text-decoration:none;color:#000}
+*{padding:0;margin:0}
+*,*:after,*:before{box-sizing:border-box}
+ul, li{list-style:none}
+
+
+/* 웹퍼스트로 만들기(부트스트랩은 모바일 퍼스트라 min-width로//css는 밑에께 먼저 적용) */
+/* 14px/16px=0.875rem */
+
+:root{font-size:16px;}
+body{min-width:320px}
+.scope-part{width:1000px;margin:0 auto;background-color:#fff}
+.row{display:flex;flex-wrap:wrap;}
+.scope-part .tit{font-size:1.25rem}
+.scope-part .lst li a{font-size:.875rem}
+.scope-part .col-df1{width:65%;padding:15px 10px}
+.scope-part .col-df2{width:35%;padding:15px 10px}
+.scope-part .bg-yellow{background-color:#dcd7393b}
+.scope-part .bg-block{background-color:#000}
+.scope-part .bg-purple{background-color:#4339dc3b}
+.scope-part .bg-block .tit,
+.scope-part .bg-block li a{color:#fff}
+.unibxsliderwrap{width:190px}
+.unibxsliderwrap .bx-pager-link{display:inline-block;width:1rem;height:1rem;background-color:red;
+border-radius:50%;font-size:0;line-height:0;text-indent:-9999em;transition:all .3s}
+.unibxsliderwrap .bx-pager-link.active{width:2rem;border-radius:10px;}
+.unibxsliderwrap .bx-pager{display:flex}
+.unibxsliderwrap .bx-pager .bx-pager-item + .bx-pager-item{margin-left:4px}
+.unibxsliderwrap .bx-controls-direction{display:none}
+.unibxsliderwrap .bx-controls{font-size:0;line-height:0;display:flex;justify-content:center}
+.uni-bxslider li a img{width:100%}
+.scope-part .move-pos .unibxsliderwrap{float:left}
+.scope-part .move-pos .caption{overflow:hidden;margin-left:10px}
+.scope-part .move-pos .unibxsliderwrap + .caption{padding-left:10px}
+.scope-part .col-df3{padding:15px 10px;width:33.333%;height:8.75rem}
+.scope-part .col-df4{padding:15px 10px;width:calc(100% - 33.333%)}
+.scope-part .bg-green{background-color:#87a8af3b}
+.scope-part .bg-blue{background-color:darkgray}
+
+
+/* 반응형 */
+.btmbxslider li a img{width:100%;display:block}
+.scope-btmbanner{padding:30px 10px 0}
+.btmbxsliderwrap .bx-pager-link{display:inline-block;width:1rem;height:1rem;background-color:red;
+border-radius:50%;font-size:0;line-height:0;text-indent:-9999em;transition:all .3s}
+.btmbxsliderwrap .bx-pager-link.active{width:2rem;border-radius:10px;}
+.btmbxsliderwrap .bx-pager{display:flex}
+.btmbxsliderwrap .bx-pager .bx-pager-item + .bx-pager-item{margin-left:4px}
+.btmbxsliderwrap .bx-controls-direction{display:none}
+.btmbxsliderwrap .bx-controls{font-size:0;line-height:0;display:flex;justify-content:center;margin-top:10px}
+
+@media (max-width:768px){
+.scope-part{width:100%}
+.scope-part .col-df1{width:100%}
+.scope-part .col-df2{width:100%}
+.scope-part .col-df3{width:100%}
+.scope-part .col-df4{width:100%}
+.scope-part .move-pos .unibxsliderwrap{float:right}
+}
+
+</style>
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+$(function(){
+    $('.uni-bxslider').bxSlider({ mode: 'fade', captions: true });
+
+// 반응형 비엑스슬라이드
+function btmSlider() {
+        windowWidth = $(window).width();
+        if (windowWidth < 768) {
+            minSlides = 1;
+            maxSlides = 1;
+            slideWidth = 768;
+        } else if (windowWidth < 1024) {
+            minSlides = 3;
+            maxSlides = 3;
+            slideWidth = 383;
+        } else {
+            minSlides = 5;
+            maxSlides = 5;
+            slideWidth = 383;
+        }
+        var obxSettings = {
+           mode: 'horizontal',
+            speed: 500,
+            pager: false,
+            moveSlides: 1,
+            slideWidth: slideWidth,
+            minSlides: minSlides,
+            maxSlides: maxSlides,
+            auto: true,
+            autoHover: true,
+            controls: false,
+            pager: true,
+            autoControls: false,
+            onSliderResize: function() {
+                windowWidth = $(window).width();
+                if (windowWidth < 768) {
+                    obxSettings.minSlides = 1;
+                    obxSettings.maxSlides = 1;
+                    obxSettings.adaptiveHeight = false,
+                    obxSettings.slideWidth = 767;
+                    slider.reloadSlider();
+                } else if (windowWidth < 1024) {
+                    obxSettings.minSlides = 3;
+                    obxSettings.maxSlides = 3;
+                    obxSettings.slideWidth = 383;
+                    slider.reloadSlider();
+                } else {
+                    obxSettings.minSlides = 5;
+                    obxSettings.maxSlides = 5;
+                    obxSettings.slideWidth = 383;
+                    slider.reloadSlider();
+                }
+            },
+        }
+        slider = $('.btmbxslider').bxSlider(obxSettings);
+    }
+    btmSlider();
+
+/*
+	mode: 'fade'	// 가로 방향 수평 슬라이드
+	, speed: 1000        // 이동 속도를 설정 1000 -> 1초
+	, pause: 3000	// 각각의 페이지 로딩 속도 1000 -> 1초
+	, autoDelay: 0		// 페이지 로딩 후 자동스타트 딜레이 초
+	//, slideWidth: 2000   // 슬라이드 너비
+	, adaptiveHeight: false	//이미지자동높이조절
+	, minSlides: 1      // 최소 노출 개수
+	, maxSlides: 1      // 최대 노출 개수
+	, moveSlides: 1		// 한번이동갯수
+	, slideMargin: 0    // 슬라이드간의 간격
+	, autoHover: false   // 마우스 호버시 정지 여부
+	, controls: false    // 이전 다음 버튼 노출 여부
+	, auto: true        // 자동 실행 여부(auto,autoControls 두개가세트)
+	, autoControls: false // 플레이스톱버튼 노출여부
+	, pager: false      // 현재 위치 페이징 표시 여부 설정
+	, responsive : true //슬라이더의 자동크기조정
+	//, ticker: true	// 계속 흐르기
+	//, speed: 6000	// 계속 흐르기 속도
+	, startSlide: 0
+	, infiniteLoop: true
+
+*/
+
+});
+</script>
+</head>
+<body>
+
+
+<div class="scope-part">
+    <div class="row">
+        <div class="col-df1 bg-yellow">
+            <div class="move-pos">
+                <div class="unibxsliderwrap">
+                    <ul class="uni-bxslider">
+                        <li>
+                            <a href=""><img src="./img/losingme.jpg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href=""><img src="./img/losingme.jpg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href=""><img src="./img/losingme.jpg" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="caption">
+                    <h3 class="tit">타이틀</h3>
+                    <ul class="lst">
+                        <li><a href="">리스트</a></li>
+                        <li><a href="">리스트</a></li>
+                        <li><a href="">리스트</a></li>
+                        <li><a href="">리스트</a></li>
+                        <li><a href="">리스트</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-df2 bg-block">
+            <h3 class="tit">타이틀</h3>
+            <ul class="lst">
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-df2 bg-green">
+            <h3 class="tit">타이틀</h3>
+            <ul class="lst">
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+            </ul>
+        </div>
+        <div class="col-df1 bg-purple">
+            <div class="unibxsliderwrap">
+                <ul class="uni-bxslider">
+                    <li>
+                        <a href=""><img src="./img/losingme.jpg" alt=""></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="./img/losingme.jpg" alt=""></a>
+                    </li>
+                    <li>
+                        <a href=""><img src="./img/losingme.jpg" alt=""></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-df1 bg-block">
+            <h3 class="tit">타이틀</h3>
+            <ul class="lst">
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+            </ul>
+        </div>
+        <div class="col-df2 bg-green">
+            <h3 class="tit">타이틀</h3>
+            <ul class="lst">
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+                <li><a href="">리스트</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-df3 bg-green"></div>
+        <div class="col-df4 bg-blue"></div>
+    </div>
+</div><!-- //.scope-part -->
+<div class="scope-btmbanner">
+    <div class="btmbxsliderwrap">
+        <ul class="btmbxslider">
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="./img/losingme.jpg" alt=""></a>
+            </li>
+        </ul>
+    </div> 
+</div>
+
+</body>
+</html>
