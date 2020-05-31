@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
     
     
 <style>
@@ -63,9 +62,10 @@ position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-si
 .swper-paging .number-wrap{position:absolute;width:100%;text-align:center;z-index:20;bottom:0}
 .swper-paging.vari1{margin-top:30px}
 
-.swiper-menu{width:100%;background:#8b012a;padding:10px;}
+.swiper-menu{width:100%;background:#8b012a;padding:0 15px}
+.swiper-menu .swiper-wrapper{justify-content:space-between}
 .swiper-menu li.swiper-slide{width:auto}
-.swiper-menu li a{color:#fff;font-weight:bold;font-size:14px;line-height:1.5}
+.swiper-menu li a{color:#fff;font-weight:bold;font-size:14px;line-height:1.5;padding:8px 0;display:block}
 .swiper-menu li .ani1 i{font-style:normal;position:relative;animation:gnbAni1 1s infinite;}
 @keyframes gnbAni1 {
 	0%,40% {top:0;}
@@ -75,10 +75,26 @@ position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-si
 .swiper-menu li .ani1 i:nth-child(2) {animation-delay:0.2s;}
 .swiper-menu li .ani1 i:nth-child(3) {animation-delay:0.3s;}
 .swiper-menu li .ani1 i:nth-child(4) {animation-delay:0.4s;}
-.swiper-menu li.on .ani1 i {animation:none;}
-.swiper-menu li.on a{color:#ffa900}
-.swiper-menu li + li{margin-left:15px}
+/* .swiper-menu li.on .ani1 i {animation:none;}
+.swiper-menu li.on a{color:#ffa900} */
+.swiper-menu li.swiper-slide-active .ani1 i {animation:none;}
+.swiper-menu li.swiper-slide-active a{color:#ffa900}
+.swiper-menu li + li{margin-left:10px}
 .swiper-menu.vari2{margin-top:20px}
+
+.swiper-menu li .ani2 i {font-style:normal;;position:relative;display:inline-block;animation:gnbAni2 0.6s linear infinite;}
+@keyframes gnbAni2 {
+	0%,25%,75%,100% {color:#fff;}
+	50% {color:#aaa;}
+}
+.swiper-menu li .ani2 i:nth-child(1) {animation-delay:0.1s;}
+.swiper-menu li .ani2 i:nth-child(2) {animation-delay:0.2s;}
+.swiper-menu li .ani2 i:nth-child(3) {animation-delay:0.3s;}
+.swiper-menu li .ani2 i:nth-child(4) {animation-delay:0.4s;}
+.swiper-menu li .ani2 i:nth-child(5) {animation-delay:0.5s;}
+.swiper-menu li.swiper-slide-active .ani2 i{animation:none;}
+.swiper-menu li.swiper-slide-active a{color:#ffa900}
+
 
 </style>
 </head>
@@ -272,27 +288,30 @@ position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-si
 <div class="swiper-menu vari2">
     <div class="swiper-container">
         <ul class="swiper-wrapper">
-            <li class="swiper-slide"><a href="">명탐정 코난</a></li>
-            <li class="swiper-slide"><a href="">달려라 하니</a></li>
-            <li class="swiper-slide"><a href="">원피스</a></li>
-            <li class="swiper-slide"><a href="">마음의 소리</a></li>
-            <li class="swiper-slide"><a href="">명탐정 코난</a></li>
-            <li class="swiper-slide"><a href="">도라에몽</a></li>
-            <li class="swiper-slide on"><a href="">달려라 하니</a></li>
-            <li class="swiper-slide"><a href="" class="ani1">
+            <li class="swiper-slide"><a href="#">명탐정 코난</a></li>
+            <li class="swiper-slide"><a href="#">달려라 하니</a></li>
+            <li class="swiper-slide"><a href="#">원피스</a></li>
+            <li class="swiper-slide"><a href="#">마음의 소리</a></li>
+            <li class="swiper-slide"><a href="#">명탐정 코난</a></li>
+            <li class="swiper-slide"><a href="#">도라에몽</a></li>
+            <li class="swiper-slide"><a href="#">달려라 하니</a></li>
+            <li class="swiper-slide"><a href="#" class="ani1">
                 <i>도</i><i>라</i><i>에</i><i>몽</i>
             </a></li>
-            <li class="swiper-slide"><a href="">원피스</a></li>
-            <li class="swiper-slide"><a href="">마음의 소리</a></li>
+            <li class="swiper-slide"><a href="#">원피스</a></li>
+            <li class="swiper-slide"><a href="#" class="ani2">
+                <i>마</i><i>음</i><i>의</i><i>소</i><i>리</i>
+            </a></li>
         </ul>
     </div>
 </div>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script>
-var swiper = new Swiper('.swper-basic .swiper-container', {
+var swiper0 = new Swiper('.swper-basic .swiper-container', {
     navigation : {
         nextEl : '.swiper-next',
         prevEl : '.swiper-prev',
@@ -317,91 +336,170 @@ var swiperPaging = new Swiper('.swper-paging .swiper-container', {
 
 
 $(function(){
-    var swiperMenu = new Swiper('.swiper-menu .swiper-container', {
+    var gnbSwiper = new Swiper('.swiper-menu .swiper-container', {
         slidesPerView: 'auto',
-        preventClicks: true,
-        preventClicksPropagation: false,
-        observer: true,
-        observeParents: true,
         initialSlide:7,
+        // observer:true,
+        // observeParents:true,
+        slideToClickedSlide:true,//클릭했을때 앞으로 이동
+        // slideActiveClass:'on',//클래시 지정시 이니셜 슬라이드시 슬라이드 위치 안됨
+        //centeredSlides: true, //슬라이드 가운데
     });
-    var $lankTitle = $('.swiper-menu .swiper-wrapper .swiper-slide a');
-    $lankTitle.click(function(e){
+    $('.swiper-menu .swiper-slide').on('click',function(e){
         e.preventDefault();
-        var target = $(this).parent();
-        $lankTitle.parent().removeClass('on')
-        target.addClass('on');
-        muCenter(target);
-    })
+        $(this).addClass('swiper-slide-active').siblings().removeClass('swiper-slide-active');
+    });
+});
+</script>
 
-    function muCenter(target){
-        var snbwrap = $('.swiper-menu .swiper-wrapper');
-        var targetPos = target.position();
-        var winHarf = $('body').width()/2;
-        var pos;
-        var wrapWidth=0;
-        snbwrap.find('.swiper-slide').each(function(){
-            wrapWidth += $(this).outerWidth();
-        })
-        if ((targetPos.left + target.outerWidth()/2) <= winHarf) { // left
-            pos = 0;
-        }else if ((wrapWidth - targetPos.left - target.outerWidth()/2) <= winHarf) { //right
-            pos = wrapWidth-$('body').width();
-        }else {
-            pos = targetPos.left - winHarf + (target.outerWidth()/2);
-        }
-        
-        setTimeout(function(){snbwrap.css({
-            "transform": "translate3d("+ (pos*-1) +"px, 0, 0)",
-            "transition-duration": "500ms"
-        })}, 200);
-    }
-})
+<!--
+================================================= 
+슬릭 플러그인
+=================================================
+-->
+<!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"> -->
 
 
-// $(function(){
-//     var swiperMenu = new Swiper('.swiper-menu .swiper-container', {
-//         slidesPerView: 'auto',
-//         preventClicks: true,
-//         preventClicksPropagation: false,
-//         observer: true,
-//         observeParents: true,
-//         initialSlide:7,
-//     });
-//     var $lankTitle = $('.swiper-menu .swiper-wrapper .swiper-slide a');
-//     $lankTitle.click(function(e){
-//         e.preventDefault();
-//         var target = $(this).parent();
-//         $lankTitle.parent().removeClass('on')
-//         target.addClass('on');
-//         muCenter(target);
-//     })
+<script type="text/javascript" src="./js/slick.min.js"></script>
 
-//     function muCenter(target){
-//         var snbwrap = $('.swiper-menu .swiper-wrapper');
-//         var targetPos = target.position();
-//         var winHarf = $('body').width()/2;
-//         var pos;
-//         var wrapWidth=0;
-//         snbwrap.find('.swiper-slide').each(function(){
-//             wrapWidth += $(this).outerWidth();
-//         })
-//         if ((targetPos.left + target.outerWidth()/2) <= winHarf) { // left
-//             pos = 0;
-//         }else if ((wrapWidth - targetPos.left - target.outerWidth()/2) <= winHarf) { //right
-//             pos = wrapWidth-$('body').width();
-//         }else {
-//             pos = targetPos.left - winHarf + (target.outerWidth()/2);
-//         }
-        
-//         setTimeout(function(){snbwrap.css({
-//             "transform": "translate3d("+ (pos*-1) +"px, 0, 0)",
-//             "transition-duration": "500ms"
-//         })}, 200);
-//     }
-// })
+<style>
+:root{font-size:16px}
+.slickauto{position:relative;max-width:100%;height:600px;}
+.slickauto .vs{position:relative;max-width:100%;width:100%;height:600px;float:left}
+/* .slickauto .oribg{display:block;position:absolute;left:50%;top:0;
+z-index:30;width:1140px;height:100%;margin-left:-570px;} */
+.slickauto .oribg{max-width:71.25rem;margin:0 auto;position:relative;display:block}
+/* 블록요소에 맥스위드 하면 가운데 정렬 가능 */
 
-  </script>
+.slickauto .scription{position:absolute;left:0;top:0;padding:6.52rem 0 0}
+.slickauto .scription .tit{opacity:0;font-size:2.5rem;line-height:1.25;font-weight:bold;display:block;position:relative;}
+.slickauto .scription .txt{opacity:0;font-size:‭2rem;line-height:1.25;font-weight:bold;display:block;position:relative;margin-top:0.625rem}
+.slickauto .slick-active .scription .tit{animation:titAni .4s linear both;animation-delay:0.1s;}
+.slickauto .slick-active .scription .txt{animation:txtAni .4s linear both;animation-delay:0.5s;}
+/* .slickauto .bg{position:absolute;top:0;width:50vw;height:100%;display:block}
+/* .slickauto .bgleft{left:-50vw;} */
+/* .slickauto .bgright{right:0;left:auto}  */
+
+
+/* 에니메이션 both가 최종동작의 모습으로 */
+@keyframes titAni {
+	0% {left:10rem;}
+	100% {left:0;opacity:1}
+}
+@keyframes txtAni {
+	0% {left:10rem;}
+	100% {left:0;opacity:1}
+}
+
+/* 클릭전
+opacity: 0;
+transform: translate(0, -5vh);
+transition: all 0.35s;
+클릭후
+opacity: 1;
+transform: translate(0, 0); */
+button{cursor: pointer;
+color: transparent;
+border: none;
+outline: none;
+background: transparent;}
+.slickauto .slick-next,
+.slickauto .slick-prev{position:absolute;display:inline-block;width:50px;height:50px;border-radius:100px;background-color:#fff;
+position:absolute;top:50%;font-size:0;line-height:0;z-index:1000;opacity:1;
+transform:translate(0, -50%)}
+.slickauto .slick-next:after,
+.slickauto .slick-prev:after{display:block;content:"";width:9px;height:15px;
+position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-size:9px 15px}
+.slickauto .slick-next:after{background-image:url("./img/next.png")}
+.slickauto .slick-prev:after{background-image:url("./img/prev.png")}
+.slickauto .slick-next{right:15px}
+.slickauto .slick-prev{left:15px}
+
+/* 슬릭 플로그인 css */
+.slickauto .slick-dots {
+    position: absolute;
+    bottom: 25px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    z-index:1000;
+}
+.slickauto .slick-dots li {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+}
+.slickauto .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: red;
+    border-radius:50%;
+    transition:all 0.3s;
+}
+.slickauto .slick-dots li.slick-active button{
+    border-radius:10px;
+    width:40px;
+}
+@media (max-width:1280px){
+.slickauto .oribg{margin-left:0.9375rem}
+}
+
+</style>
+<div class="slickauto">
+    <div class="vs" style="background: url(./img/vs1.jpg) no-repeat 50% 50%;">
+        <span class="bg bgleft" style="background-color:#eaeae4"></span>
+        <span class="bg bgright" style="background-color:#f4f2f3"></span>
+        <!-- <span class="img"><img src="./img/vs1.jpg" alt=""></span> -->
+        <span class="oribg">
+            <div class="scription">
+                <span class="tit">달리자 씽씽! 신나는 캠핑 캠핑</span>
+                <span class="txt">8월엔 떠나자~ 신난다 8월엔 떠나자~ 신난다</span>
+            </div>
+        </span>
+    </div>
+    <div class="vs" style="background: url(./img/vs2.jpg) no-repeat 50% 50%;">
+        <span class="bg bgleft" style="background-color:#eaeae4"></span>
+        <span class="bg bgright" style="background-color:#f4f2f3"></span>
+        <span class="oribg">
+            <div class="scription">
+                <span class="tit">달리자 씽씽! 신나는 캠핑 캠핑</span>
+                <span class="txt">8월엔 떠나자~ 신난다 8월엔 떠나자~ 신난다</span>
+            </div>
+        </span>
+    </div>
+    <div class="vs" style="background: url(./img/vs3.jpg) no-repeat 50% 50%;">
+        <span class="bg bgleft" style="background-color:#eaeae4"></span>
+        <span class="bg bgright" style="background-color:#f4f2f3"></span>
+        <span class="oribg">
+            <div class="scription">
+                <span class="tit">달리자 씽씽! 신나는 캠핑 캠핑</span>
+                <span class="txt">8월엔 떠나자~ 신난다 8월엔 떠나자~ 신난다</span>
+            </div>
+        </span>
+    </div>
+</div>
+<script>
+$('.slickauto').slick({
+    autoplay: true,
+    dots: true,
+  infinite: true,
+  speed: 1000,
+  fade: true,
+  cssEase: 'linear'
+});
+
+</script>
 
 </body>
 </html>
