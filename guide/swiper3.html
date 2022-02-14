@@ -97,12 +97,16 @@ position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-si
 
 
 </style>
+<script>
+
+
+</script>
 </head>
 <body>
 
 <div class="wrap">
-    <div class="swper-basic">
-        <div class="swiper-container">
+    <div class="" >
+        <div class="swiper-container" id="myId">
             <div class="swiper-wrapper">
                 <ul class="swiper-slide">
                     <li>
@@ -204,6 +208,14 @@ position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-si
             <div class="swiper-next"></div>
             <div class="swiper-prev"></div>
             <div class="swiper-pagination"></div>
+            <div class="txtBtn">
+            </div>
+           
+            <!-- <div class="txtBtn">
+                <a href="#">메뉴메뉴메뉴1</a>
+                <a href="#">메뉴메뉴메뉴2</a>
+                <a href="#">메뉴메뉴메뉴3</a>
+            </div> -->
         </div>
     </div><!-- //.swper-basic -->
     
@@ -310,18 +322,57 @@ position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);background-si
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<style>
+    /* .txtBtn a.on{color:red;} */
+    .swper-basic .txtBtn{display:flex;}
+    .swper-basic .txtBtn a{font-size:20px;flex:1;border:1px solid red}
+</style>
 <script>
-var swiper0 = new Swiper('.swper-basic .swiper-container', {
-    navigation : {
-        nextEl : '.swiper-next',
-        prevEl : '.swiper-prev',
-    },      
-    pagination: {
-        el : '.swiper-pagination',
-        clickable : true,
-    },
-    loop: true,
+$(function(){
+let labels = ['유니예요', '응이예요', '너무행', '나빴어', 'e', 'f', 'g', 'h', 'i', 'j'];
+// var swiper0 = new Swiper('.swper-basic .swiper-container', {
+//     navigation : {
+//         nextEl : '.swiper-next',
+//         prevEl : '.swiper-prev',
+//     },      
+//     loop: true,
+//     autoplay: {
+//         delay: 2500,
+//         disableOnInteraction: false,
+//       },
+//     pagination: {
+//         el: '.txtBtn',
+//         clickable: true,
+//         renderBullet: function (index, className) {
+//             return '<a href="#" class="' + className + '">' + (labels[index])+ '</a>';
+//         }
+//     },
+// });
+
+
+$(".swper-basic .swiper-container").hover(function() {
+    (this).swiper.autoplay.stop();
+    }, function() {
+     (this).swiper.autoplay.start();
 });
+
+
+
+});
+
+
+
+
+// $(".txtBtn a").on("click", function() {
+//     var img_index = $(this).index()+1;
+//     swiper0.slideTo(img_index);
+//     $(this).addClass("on").siblings().removeClass("on");
+//     return false;
+// });  
+     
+
+
+
 
 var swiperPaging = new Swiper('.swper-paging .swiper-container', { 
     navigation : {
@@ -350,8 +401,45 @@ $(function(){
         $(this).addClass('swiper-slide-active').siblings().removeClass('swiper-slide-active');
     });
 });
-</script>
 
+// $(function(){
+//     isMobile();
+//     $(window).resize(function() { 
+//         isMobile()
+//      });
+//      function isMobile(){
+//         if($(window).width() > 768) {
+//             $(".app").removeClass("swper-basic");
+//         } else {
+//             $(".app").addClass("swper-basic");
+//         }
+//     }
+// });
+$(function(){
+    var mySwiper = undefined;
+    function initSwiper() {
+        var screenWidth = $(window).width();
+        if(screenWidth < 640 && mySwiper == undefined) {            
+            mySwiper = new Swiper('#myId.swiper-container', {            
+                spaceBetween: 0,
+                freeMode: true
+            });
+        } else if (screenWidth > 641 && mySwiper != undefined) {
+            mySwiper.destroy();
+            mySwiper = undefined;
+            jQuery('.swiper-wrapper').removeAttr('style');
+            jQuery('.swiper-slide').removeAttr('style');            
+        }        
+    }
+    initSwiper();
+    $(window).on('resize', function(){
+        initSwiper();        
+    });
+});
+</script>
+<style>
+    #myId .swiper-container{display:inline-block;}
+</style>
 <!--
 ================================================= 
 슬릭 플러그인
