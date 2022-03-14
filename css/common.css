@@ -489,7 +489,7 @@ About Me
 .about .section-title-wrap{position:relative;z-index:101;}
 .about .about-caption{z-index:101;overflow:hidden;width:auto;margin:0 auto;position:relative;}
 @media (min-width: 768px) {
-.about {height:920px;}
+.about {height:1050px;}
 }
 @media (min-width: 960px) {
 }
