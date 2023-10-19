@@ -489,7 +489,7 @@ About Me
 .about .section-title-wrap{position:relative;z-index:101;}
 .about .about-caption{z-index:101;overflow:hidden;width:auto;margin:0 auto;position:relative;}
 @media (min-width: 768px) {
-.about {height:1050px;}
+.about {height:1500px;}
 }
 @media (min-width: 960px) {
 }
@@ -515,7 +515,6 @@ About Me
 .about .about-animation{width:100%;}
 .about  #scene2{width:100%;}
 .about .about-list{width:100%;}
-.about .about-list .year {color: #245269; font-weight: 500; font-size: 20px;}
 .about .ab1{top:7px !important;left:7px !important;right: auto !important;width:60%;}
 @media (min-width: 768px) {
 }
@@ -811,6 +810,7 @@ common
 
 .about-wrap {overflow:hidden; z-index:101; position:relative;}
 .about-box .sub-title{font-size:18px; font-weight:bold; margin:15px 0;}
+.about-list .year {color: #245269; font-weight: 500; font-size: 20px;}
 @media (min-width: 768px) {
 .about-box {float:left; width:50%;} 
 }
