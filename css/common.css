@@ -817,6 +817,7 @@ common
 }
 
 .addLink {text-align: center; color: #FF5274; font-size: 18px; font-weight: 500; margin-top: 10px;}
+.addLink  a{color: #FF5274; text-decoration: underline;}
 
 
 
