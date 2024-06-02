@@ -8,6 +8,11 @@ module.exports = defineConfig({
     client: {
       overlay: false
     }
-  }
+  },
   //E: 추가했음
+
+  //경로
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/vuetify2/'
+  : '/'
 })
