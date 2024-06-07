@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>Fast Bank</title>
+</head>
+
+<body>
+  <div class="section">
+    <ul class="aniList">
+      <li class="aniList__item">26주적금</li>
+      <li class="aniList__item">저금</li>
+      <li class="aniList__item">패스트캠퍼스</li>
+      <li class="aniList__item">떡볶이</li>
+      <li class="aniList__item">치킨</li>
+      <li class="aniList__item">축구</li>
+      <li class="aniList__item">축구선수</li>
+      <li class="aniList__item">마이너스통장대출</li>
+      <li class="aniList__item">26주적금</li>
+      <li class="aniList__item">저금</li>
+      <li class="aniList__item">패스트캠퍼스</li>
+      <li class="aniList__item">떡볶이</li>
+      <li class="aniList__item">치킨</li>
+      <li class="aniList__item">축구</li>
+      <li class="aniList__item">축구선수</li>
+      <li class="aniList__item">마이너스통장대출</li>
+      <li class="aniList__item">26주적금</li>
+      <li class="aniList__item">저금</li>
+      <li class="aniList__item">패스트캠퍼스</li>
+      <li class="aniList__item">떡볶이</li>
+      <li class="aniList__item">치킨</li>
+      <li class="aniList__item">축구</li>
+      <li class="aniList__item">축구선수</li>
+      <li class="aniList__item">마이너스통장대출</li>
+      <li class="aniList__item">26주적금</li>
+      <li class="aniList__item">저금</li>
+      <li class="aniList__item">패스트캠퍼스</li>
+      <li class="aniList__item">떡볶이</li>
+      <li class="aniList__item">치킨</li>
+      <li class="aniList__item">축구</li>
+      <li class="aniList__item">축구선수</li>
+      <li class="aniList__item">마이너스통장대출</li>
+    </ul>
+  </div>
+  
+  <div class="section gray">
+    
+    <div class="videoSection">
+      
+      <div class="fixed-wrapper">
+        <div class="videoBox">
+          <video class="video" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          type="video/mp4" muted loop></video>
+        </div>
+        
+        <div class="video__desc">
+          <p class="video__tit">영상에 대한 타이틀</p>
+          <p class="video__txt">영상에 대한 텍스트입니다. 영상에 대한 설명을 나타냅니다.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <ul class="thumList">
+      <li class="thumList__item">
+        <a href="" class="thumList__thum">
+          <img src="https://picsum.photos/id/100/1000/1000" alt="place image">
+        </a>
+      </li>
+      <li class="thumList__item">
+        <a href="" class="thumList__thum">
+          <img src="https://picsum.photos/id/200/1000/1000" alt="place image">
+        </a>
+      </li>
+      <li class="thumList__item">
+        <a href="" class="thumList__thum">
+          <img src="https://picsum.photos/id/455/1000/1000" alt="place image">
+        </a>
+      </li>
+      <li class="thumList__item">
+        <a href="" class="thumList__thum">
+          <img src="https://picsum.photos/id/400/1000/1000" alt="place image">
+        </a>
+      </li>
+      <li class="thumList__item">
+        <a href="" class="thumList__thum">
+          <img src="https://picsum.photos/id/500/1000/1000" alt="place image">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</body>
+
+<script>
+ // 스크롤 => 글자 이벤트 처리
+ document.addEventListener('scroll', function() {
+  const content = document.querySelector('.aniList'); // content 요소 선택
+  const items = content.querySelectorAll('.aniList__item'); // content 내부의 모든 item 요소 선택
+  const itemCount = items.length; // 항목의 개수
+    const contentHeight = content.scrollHeight; // content의 전체 높이
+    const scrollTop = window.scrollY; // 스크롤된 위치
+    const viewportHeight = window.innerHeight; // 뷰포트의 높이
+
+    // 현재 활성화될 항목의 인덱스 계산
+    const activeIndex = Math.floor((scrollTop / (contentHeight - viewportHeight)) * itemCount);
+
+    // 모든 항목에서 active 클래스 제거
+    items.forEach((item, index) => {
+        if (index === activeIndex) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+});
+
+
+// 스크롤 => 비디오 이벤트 처리
+const videoPlayBack = 500; // 스크롤 속도와 비디오 재생 시간의 비율을 정의하는 상수
+const videoElement = document.querySelector('.video'); // 비디오 요소를 참조
+const videoSection = document.querySelector(".videoSection"); // 비디오 섹션 요소를 참조
+const fixedWrapper = document.querySelector(".fixed-wrapper"); // 고정될 래퍼 요소를 참조
+
+// 주어진 요소를 화면 중앙에 고정시키고, 스크롤 위치에 따라 비디오 재생 시간을 조정하는 함수
+function centerElement(elementClass, video) {
+  const element = document.querySelector('.' + elementClass);
+  const parent = element.parentElement;
+  
+  if (window.scrollY > parent.offsetTop - ((document.documentElement.clientHeight - element.offsetHeight) / 2)) {
+      element.style.position = "fixed";
+      element.style.top = "50%";
+      element.style.left = "50%";
+      element.style.transform = "translate(-50%, -50%)";
+
+      if (video) video.currentTime = (window.scrollY - videoSection.offsetTop) / videoPlayBack;
+  } else {
+      element.style.position = "relative";
+      element.style.top = "initial";
+      element.style.left = "initial";
+      element.style.transform = "initial";
+  }
+}
+
+// 비디오 메타데이터가 로드될 때 비디오 섹션의 높이를 설정하는 함수
+videoElement.addEventListener("loadedmetadata", () => {
+    // 비디오 섹션의 높이를 비디오 재생 시간과 videoPlayBack 비율로 설정
+    videoSection.style.height = videoElement.duration * videoPlayBack + "px";
+});
+
+// 스크롤 이벤트 처리
+window.addEventListener("scroll", () => {
+  // 비디오 섹션과 설명 요소를 각각 중앙에 고정시키는 함수 호출
+  centerElement("fixed-wrapper", videoElement);
+
+  if (window.scrollY > videoSection.offsetTop + videoSection.offsetHeight - (fixedWrapper.offsetHeight + (document.documentElement.clientHeight - fixedWrapper.offsetHeight) / 2)) {
+    fixedWrapper.style.position = "relative";
+    fixedWrapper.style.top = "initial";
+    fixedWrapper.style.left = "initial";
+    fixedWrapper.style.transform = `translateY(${videoSection.offsetHeight - fixedWrapper.offsetHeight}px)`;
+  }
+});
+
+//썸네일 리스트
+document.addEventListener('DOMContentLoaded', () => {
+  const content = document.querySelector('.thumList');
+  const items = content.querySelectorAll('.thumList__item');
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1 // 섹션이 10% 보일 때 감지
+  };
+  
+  const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 순차적으로 active 클래스 추가
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('active');
+          }, index * 500); // 500ms 간격으로 순차적으로 활성화
+        });
+      } else {
+        // active 클래스 제거
+        items.forEach(item => {
+          item.classList.remove('active');
+        });
+      }
+    });
+  };
+  
+  const observer = new IntersectionObserver(observerCallback, observerOptions);
+  observer.observe(content);
+});
+
+</script>
+
+
+</html>

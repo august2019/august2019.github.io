@@ -1,0 +1,14 @@
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    letter-spacing:-0.04em;
+}
+*::before,
+*::after {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    letter-spacing:-0.04em;
+}
+li {list-style: none;}

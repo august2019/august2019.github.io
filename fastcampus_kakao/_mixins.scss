@@ -1,0 +1,82 @@
+@use "sass:math";
+
+// ========== BREAKPOINT
+@mixin pc1 {
+    @media screen and (max-width: 1800px) {
+        @content;
+    }
+}
+@mixin pc2 {
+    @media screen and (max-width: 1700px) {
+        @content;
+    }
+}
+@mixin pc3 {
+    @media screen and (max-width: 1600px) {
+        @content;
+    }
+}
+@mixin labtop {
+    @media screen and (max-width: 1440px) {
+        @content;
+    }
+}
+@mixin labtop2 {
+    @media screen and (max-width: 1200px) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media screen and (max-width: 1024px) {
+        @content;
+    }
+}
+@mixin extablet {
+    @media screen and (min-width: 1025px) {
+        @content;
+    }
+}
+@mixin exmob {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+@mixin mobile {
+    @media screen and (max-width: 767px) {
+        @content;
+    }
+}
+@mixin mob {
+    @media screen and (max-width: 480px) {
+        @content;
+    }
+}
+
+// ========== TEXT ELLIPSIS
+@mixin textEllipsis {
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+    overflow:hidden;
+}
+@mixin textEllipsisClamp($line-clamp) {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:$line-clamp;
+    -webkit-box-orient:vertical;
+}
+
+// ========== CLEARFIX
+@mixin clearfix {
+    &::after {
+        content:' ';
+        display:block;
+        clear:both;
+    }
+}
+
+// ========== PERCENT CALC
+@mixin calcs($property, $size, $wrap) {
+    #{$property}: math.div(($size * 100%), $wrap);
+}
