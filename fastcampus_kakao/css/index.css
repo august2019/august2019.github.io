@@ -29,6 +29,11 @@ li {
   width: 100%;
   max-width: 100%;
 }
+@media screen and (max-width: 767px) {
+  .section {
+    padding: 40px 0;
+  }
+}
 
 .thumList {
   display: flex;
@@ -134,10 +139,6 @@ li {
   animation-name: fadeInRight;
 }
 
-.fixed-wrapper {
-  width: 500px;
-}
-
 .videoSection {
   position: relative;
   width: 500px;
@@ -145,7 +146,7 @@ li {
 }
 @media screen and (max-width: 767px) {
   .videoSection {
-    width: 80%;
+    width: 300px;
   }
 }
 
@@ -156,6 +157,7 @@ li {
 .videoBox::before {
   content: "";
   display: block;
+  width: 100%;
   padding-top: 56.25%;
 }
 .videoBox video {

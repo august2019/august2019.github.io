@@ -17,6 +17,9 @@
     width: 100%;
     max-width: 100%;
   }
+  @include mobile {
+    padding: 40px 0;
+  }
 }
 
 .thumList {
@@ -127,23 +130,22 @@
 
 
 
-.fixed-wrapper {
-  width: 500px;
-}
 .videoSection {
   position: relative;
   width: 500px;
   margin: 0 auto;
   @include mobile {
-    width: 80%;
+    width: 300px;
   }
 }
+
 .videoBox {
   position: relative;
   width: 100%;
   &::before {
     content: "";
     display: block;
+    width: 100%;
     padding-top: 56.25%;
   }
   video {
